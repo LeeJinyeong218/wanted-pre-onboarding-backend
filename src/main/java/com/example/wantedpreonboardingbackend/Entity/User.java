@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.Entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,6 +20,12 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "id")
+    private String id;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "name")
     private String name;
 
@@ -32,4 +39,15 @@ public class User {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Builder
+    public User(String id,
+                String password,
+                String name,
+                String selfIntro){
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.selfIntro = selfIntro;
+    }
 }
