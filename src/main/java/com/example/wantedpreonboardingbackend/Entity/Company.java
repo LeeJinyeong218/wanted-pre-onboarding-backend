@@ -28,6 +28,9 @@ public class Company {
     @Column(name = "location")
     private String location;
 
+    @Column(name = "detail_address")
+    private String detailAddress;
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;
