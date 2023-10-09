@@ -19,6 +19,12 @@ public class Company {
     @Column(name = "company_id")
     private Long companyId;
 
+    @Column(name = "id")
+    private String id;
+
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "name")
     private String name;
 
