@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회사 회원 가입</title>
+</head>
+<body>
+<form th:action="@{/signup-company}" method="post" enctype="multipart/form-data">
+  아이디
+  <input name="id" type="text">
+  패스워드
+  <input name="password" type="password">
+  회사 이름
+  <input name="name" type="text">
+  국가
+  <select name="country" class="country">
+    <option class="country-option">국가를 선택해주세요</option>
+    <option th:each="country : ${countriesAndLocations.getList()}"
+      th:text="${country}"
+      th:value="${country}"
+      class="country-option"></option>
+  </select>
+  지역
+  <select name="location" class="location">
+    <option class="location-option">지역을 선택해주세요</option>
+  </select>
+  상세 주소
+  <input name="detailAddress" type="text">
+
+  <button type="submit">회원가입</button>
+</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:inline="javascript">
+  $(() => {
+    let country = null;
+    let locations = null;
+    let countriesAndLocations = [[${countriesAndLocations.getMap()}]];
+
+
+    $('.country').on("change", () =>{
+      $('.location').children('option:not(:first)').remove();
+      country = $('.country option:selected').val();
+      locations = countriesAndLocations[country];
+      $.each(locations, (idx, location) => {
+        $('.location').append(`<option th:value="${location}">${location}</option>`);
+        });
+      })
+  })
+</script>
+</html>
