@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
 home
+<div th:if="${user_id} == null">
+    <a th:href="@{/login-user}">사용자 로그인</a>
+    <a th:href="@{/login-company}">회사 로그인</a>
+</div>
+<div th:if="${user_id} != null">
+    <button class="logout" type="button">로그아웃</button>
+</div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script th:inline="javascript">
+    $(() => {
+        $('.logout').on("click", () => {
+            $.post("/logout").done(() => {
+                location.href = "/";
+            })
+        })
+    })
+</script>
 </html>
