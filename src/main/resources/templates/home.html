@@ -19,6 +19,11 @@ home
 <div th:if="${user_id} != null">
 
 </div>
+<div class="jobPosting-container">
+    <div th:each="job_posting : ${job_postings}">
+        <p th:text="${job_posting}"></p>
+    </div>
+</div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>

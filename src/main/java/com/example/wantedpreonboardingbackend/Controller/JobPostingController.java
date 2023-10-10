@@ -24,9 +24,7 @@ public class JobPostingController {
     public String writeJobPostingProcess(HttpServletRequest request,
                                          JobPostingWriteDto dto) {
         HttpSession session = request.getSession();
-        System.out.println("OK");
         Long companyId = Long.parseLong(String.valueOf(session.getAttribute("company_id")));
-        System.out.println(companyId);
         jobPostingService.addJobPosting(dto, companyId);
         return "redirect:/";
     }
