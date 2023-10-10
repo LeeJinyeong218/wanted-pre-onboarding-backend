@@ -12,7 +12,7 @@ public class MainController {
     @GetMapping("/")
     public String homePage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        model.addAttribute("user_id", session.getAttribute("user_id"));
+        model.addAttribute("id", session.getAttribute("id"));
         return "home";
     }
 

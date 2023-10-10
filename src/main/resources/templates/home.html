@@ -6,11 +6,11 @@
 </head>
 <body>
 home
-<div th:if="${user_id} == null">
+<div th:if="${id} == null">
     <a th:href="@{/login-user}">사용자 로그인</a>
     <a th:href="@{/login-company}">회사 로그인</a>
 </div>
-<div th:if="${user_id} != null">
+<div th:if="${id} != null">
     <button class="logout" type="button">로그아웃</button>
 </div>
 </body>
