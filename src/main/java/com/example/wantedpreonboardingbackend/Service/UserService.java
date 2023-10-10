@@ -11,7 +11,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public void addUser(UserSignUpDto dto){
-        System.out.println(dto.toEntity());
         userRepository.save(dto.toEntity());
     }
 }
