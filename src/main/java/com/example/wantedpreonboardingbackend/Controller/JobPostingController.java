@@ -1,12 +1,15 @@
 package com.example.wantedpreonboardingbackend.Controller;
 
 import com.example.wantedpreonboardingbackend.Dto.JobPostingWriteDto;
+import com.example.wantedpreonboardingbackend.Entity.JobPosting;
 import com.example.wantedpreonboardingbackend.Service.JobPostingService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -14,6 +17,14 @@ public class JobPostingController {
 
     @Autowired
     private JobPostingService jobPostingService;
+
+    @GetMapping("/job_posting/{job_posting_id}")
+    public String detailJobPostingPage(@PathVariable("job_posting_id") Long jobPostingId,
+                                       Model model) {
+        JobPosting jobPosting = jobPostingService.getJobPostingByJobPostingId(jobPostingId);
+        model.addAttribute("job_posting", jobPosting);
+        return "jobPostingDetail";
+    }
 
     @GetMapping("/job_posting/write")
     public String writeJobPostingPage() {

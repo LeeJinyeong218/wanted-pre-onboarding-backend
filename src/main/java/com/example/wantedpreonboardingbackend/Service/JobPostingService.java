@@ -18,6 +18,10 @@ public class JobPostingService {
     public List<JobPosting> getJobPostings() {
         return jobPostingRepository.findAllByOrderByCreatedAtDesc();
     }
+
+    public JobPosting getJobPostingByJobPostingId(Long jobPostingId) {
+        return jobPostingRepository.findByJobPostingId(jobPostingId);
+    }
     public void addJobPosting(JobPostingWriteDto dto, Long companyId) {
         jobPostingRepository.save(dto.toEntityWithCompanyId(companyId));
     }

@@ -21,7 +21,9 @@ home
 </div>
 <div class="jobPosting-container">
     <div th:each="job_posting : ${job_postings}">
-        <p th:text="${job_posting}"></p>
+        <a th:href="@{/job_posting/{jobPostingId}(jobPostingId = ${job_posting.getJobPostingId()})}">
+            <p th:text="${job_posting}"></p>
+        </a>
     </div>
 </div>
 </body>
