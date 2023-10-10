@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공고 작성 페이지</title>
+</head>
+<body>
+<form th:action="@{/job_posting/write}" method="post" enctype="multipart/form-data">
+    채용 보상금
+    <input name="recruitmentCompensation" type="text">
+    제목*
+    <input name="title" type="text">
+    포지션*
+    <input name="position" type="text">
+    내용
+    <input name="content" type="text">
+    요구 기술
+    <input name="requiredSkill" type="text">
+
+    <button type="submit">작성 완료</button>
+</form>
+</body>
+</html>

@@ -13,6 +13,12 @@ home
 <div th:if="${id} != null">
     <button class="logout" type="button">로그아웃</button>
 </div>
+<div th:if="${company_id} != null">
+    <a th:href="@{/job_posting/write}">채용 공고 작성하기</a>
+</div>
+<div th:if="${user_id} != null">
+
+</div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>

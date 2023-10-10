@@ -13,6 +13,8 @@ public class MainController {
     public String homePage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         model.addAttribute("id", session.getAttribute("id"));
+        model.addAttribute("user_id", session.getAttribute("user_id"));
+        model.addAttribute("company_id", session.getAttribute("company_id"));
         return "home";
     }
 
