@@ -36,4 +36,8 @@ public class JobPostingService {
         existingJobPosting.setRequiredSkill(dto.getRequiredSkill());
         jobPostingRepository.save(existingJobPosting);
     }
+
+    public void deleteJobPosting(Long jobPostingId) {
+        jobPostingRepository.delete(jobPostingRepository.findByJobPostingId(jobPostingId));
+    }
 }

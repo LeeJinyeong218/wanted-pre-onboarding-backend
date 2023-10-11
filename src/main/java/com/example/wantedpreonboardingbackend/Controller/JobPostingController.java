@@ -65,4 +65,11 @@ public class JobPostingController {
         jobPostingService.editJobPosting(jobPostingId, dto);
         return "redirect:/job_posting/" + String.valueOf(jobPostingId);
     }
+
+    // delete job posting
+    @PostMapping("/job_posting/{job_posting_id}/delete")
+    public String deleteJobPostingProcess(@PathVariable("job_posting_id") Long jobPostingId) {
+        jobPostingService.deleteJobPosting(jobPostingId);
+        return "redirect:/";
+    }
 }

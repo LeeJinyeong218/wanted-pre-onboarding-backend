@@ -7,13 +7,24 @@
 <body>
 <p th:text="${job_posting}"></p>
 <button th:if="${editable == true}" type="button" class="edit-button">수정</button>
+<button th:if="${editable == true}" type="button" class="delete-button">삭제</button>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script th:inline="javascript">
     $(() => {
+        let jobPostingId = [[${job_posting.getJobPostingId()}]];
         $('.edit-button').on('click', () => {
-            location.href = [[${job_posting.getJobPostingId}]] + "/edit";
+            location.href =  `${jobPostingId}/edit`;
+        })
+        $('.delete-button').on('click', () => {
+            $.post(
+                `${jobPostingId}/delete`,
+                {},
+                () => {
+                    location.href = document.referrer;
+                }
+            )
         })
     })
 </script>
