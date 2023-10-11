@@ -1,5 +1,6 @@
 package com.example.wantedpreonboardingbackend.Service;
 
+import com.example.wantedpreonboardingbackend.Dto.JobPostingEditDto;
 import com.example.wantedpreonboardingbackend.Dto.JobPostingWriteDto;
 import com.example.wantedpreonboardingbackend.Entity.JobPosting;
 import com.example.wantedpreonboardingbackend.Repository.JobPostingRepository;
@@ -24,5 +25,15 @@ public class JobPostingService {
     }
     public void addJobPosting(JobPostingWriteDto dto, Long companyId) {
         jobPostingRepository.save(dto.toEntityWithCompanyId(companyId));
+    }
+
+    public void editJobPosting(Long jobPostingId, JobPostingEditDto dto) {
+        JobPosting existingJobPosting = jobPostingRepository.findByJobPostingId(jobPostingId);
+        existingJobPosting.setRecruitmentCompensation(dto.getRecruitmentCompensation());
+        existingJobPosting.setTitle(dto.getTitle());
+        existingJobPosting.setPosition(dto.getPosition());
+        existingJobPosting.setContent(dto.getContent());
+        existingJobPosting.setRequiredSkill(dto.getRequiredSkill());
+        jobPostingRepository.save(existingJobPosting);
     }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공고 수정 페이지</title>
+</head>
+<body>
+<form th:action="@{/job_posting/{job_posting_id}/edit(job_posting_id=${jobPostingId})}" method="post" enctype="multipart/form-data">
+    채용 보상금
+    <input name="recruitmentCompensation" type="text" th:value="${existingJobPosting.getRecruitmentCompensation()}">
+    제목
+    <input name="title" type="text" th:value="${existingJobPosting.getTitle()}">
+    포지션
+    <input name="position" type="text" th:value="${existingJobPosting.getPosition()}">
+    내용
+    <input name="content" type="text" th:value="${existingJobPosting.getContent()}">
+    요구 기술
+    <input name="requiredSkill" type="text" th:value="${existingJobPosting.getRequiredSkill()}">
+
+    <button type="submit">수정</button>
+    <a href="javascript:window.history.back();">취소</a>
+</form>
+</body>
+</html>
