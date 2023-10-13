@@ -3,6 +3,8 @@ package com.example.wantedpreonboardingbackend.Controller;
 import com.example.wantedpreonboardingbackend.Dto.JobPostingEditDto;
 import com.example.wantedpreonboardingbackend.Dto.JobPostingWriteDto;
 import com.example.wantedpreonboardingbackend.Entity.JobPosting;
+import com.example.wantedpreonboardingbackend.Repository.ApplyRepository;
+import com.example.wantedpreonboardingbackend.Service.CompanyService;
 import com.example.wantedpreonboardingbackend.Service.JobPostingService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +21,9 @@ public class JobPostingController {
 
     @Autowired
     private JobPostingService jobPostingService;
+
+    @Autowired
+    private CompanyService companyService;
 
     // common function
 
@@ -85,6 +90,21 @@ public class JobPostingController {
     public String deleteJobPostingProcess(@PathVariable("job_posting_id") Long jobPostingId) {
         jobPostingService.deleteJobPosting(jobPostingId);
         return "redirect:/";
+    }
+
+    // view company's job postings
+    @GetMapping("/job_posting/list")
+    public String listCompanyJobPostingPage(HttpServletRequest request,
+                                            Model model) {
+        HttpSession session = request.getSession();
+        Object companyIdObject = session.getAttribute("company_id");
+        if (companyIdObject == null) {
+            return "redirect:/";
+        }
+        Long companyId = Long.parseLong(String.valueOf(companyIdObject));
+        model.addAttribute("company", companyService.getCompanyByCompanyId(companyId));
+        model.addAttribute("job_postings", jobPostingService.getJobPostingsByCompanyId(companyId));
+        return "jobPostingCompanyList";
     }
 
 

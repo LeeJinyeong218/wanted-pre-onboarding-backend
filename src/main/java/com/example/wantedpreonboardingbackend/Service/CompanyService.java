@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
+    public Company getCompanyByCompanyId(Long companyId) {
+        return companyRepository.findByCompanyId(companyId);
+    }
 
     public Company getCompanyById(String id) {
         return companyRepository.findById(id);

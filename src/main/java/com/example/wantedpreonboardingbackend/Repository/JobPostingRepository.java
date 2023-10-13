@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface JobPostingRepository extends JpaRepository<JobPosting, Long> {
-    List<JobPosting> findAllByOrderByCreatedAtDesc();
+    List<JobPosting> findAllByOrderByJobPostingIdDesc();
     JobPosting findByJobPostingId(Long jobPostingId);
     @Query(
             value = "SELECT * FROM job_posting jp " +
@@ -21,4 +21,6 @@ public interface JobPostingRepository extends JpaRepository<JobPosting, Long> {
             nativeQuery = true
     )
     List<JobPosting> findAllAboutSearchWord(String searchWord);
+
+    List<JobPosting> findAllByCompanyIdOrderByJobPostingIdDesc(Long companyId);
 }

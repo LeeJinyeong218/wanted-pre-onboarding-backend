@@ -18,15 +18,17 @@ public class JobPostingService {
     private JobPostingRepository jobPostingRepository;
 
     public List<JobPosting> getJobPostings() {
-        return jobPostingRepository.findAllByOrderByCreatedAtDesc();
+        return jobPostingRepository.findAllByOrderByJobPostingIdDesc();
     }
 
     public JobPosting getJobPostingByJobPostingId(Long jobPostingId) {
         return jobPostingRepository.findByJobPostingId(jobPostingId);
     }
-
     public List<JobPosting> getJobPostingsBySearchWord(String searchWord) {
         return jobPostingRepository.findAllAboutSearchWord(searchWord);
+    }
+    public List<JobPosting> getJobPostingsByCompanyId(Long companyId) {
+        return jobPostingRepository.findAllByCompanyIdOrderByJobPostingIdDesc(companyId);
     }
     public void addJobPosting(JobPostingWriteDto dto, Long companyId) {
         jobPostingRepository.save(dto.toEntityWithCompanyId(companyId));

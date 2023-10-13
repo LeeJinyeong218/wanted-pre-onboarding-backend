@@ -9,8 +9,12 @@
 <div th:if="${user_id != null}">
     <button type="button" class="apply-button">지원하기</button>
 </div>
-<button th:if="${editable == true}" type="button" class="edit-button">수정</button>
-<button th:if="${editable == true}" type="button" class="delete-button">삭제</button>
+<div th:if="${editable} == true">
+    <button type="button" class="edit-button">수정</button>
+    <button type="button" class="delete-button">삭제</button>
+    <a th:href="@{/job_posting/{job_posting_id}/applicant(job_posting_id = ${job_posting_id})}">지원자 보기</a>
+</div>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
