@@ -107,5 +107,21 @@ public class JobPostingController {
         return "jobPostingCompanyList";
     }
 
+    // user function
 
+    // view applied job postings지
+    @GetMapping("/applied_job_posting")
+    public String listAppliedJobPostingPage(HttpServletRequest request,
+                                            Model model) {
+        HttpSession session = request.getSession();
+        Object userIdObject = session.getAttribute("user_id");
+        if (userIdObject == null) {
+            return "redirect:/";
+        }
+
+        Long userId = Long.parseLong(String.valueOf(userIdObject));
+        model.addAttribute("job_postings", jobPostingService.getJobPostingsFromApplyByUserId(userId));
+
+        return "JobPostingUserList";
+    }
 }

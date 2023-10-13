@@ -18,7 +18,7 @@ home
     <a th:href="@{/job_posting/write}">채용 공고 작성하기</a>
 </div>
 <div th:if="${user_id} != null">
-
+    <a th:href="@{/applied_job_posting}">지원한 공고 보기</a>
 </div>
 <div class="search-bar">
     <input name="searchWord" type="text" class="searchWord">

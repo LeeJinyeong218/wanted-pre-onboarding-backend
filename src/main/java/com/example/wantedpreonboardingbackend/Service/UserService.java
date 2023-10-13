@@ -28,7 +28,7 @@ public class UserService {
 
     public List<User> getUserFromApplyByJobPostingId(Long jobPostingId) {
         List<Apply> applies = applyRepository.findByJobPostingId(jobPostingId);
-        List<Long> userIdList = applies.stream().map(u -> u.getUserId()).toList();
+        List<Long> userIdList = applies.stream().map(apply -> apply.getUserId()).toList();
         return userRepository.findAllByUserIdIn(userIdList);
     }
 }

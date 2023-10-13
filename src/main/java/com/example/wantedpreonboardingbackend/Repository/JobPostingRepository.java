@@ -21,6 +21,6 @@ public interface JobPostingRepository extends JpaRepository<JobPosting, Long> {
             nativeQuery = true
     )
     List<JobPosting> findAllAboutSearchWord(String searchWord);
-
     List<JobPosting> findAllByCompanyIdOrderByJobPostingIdDesc(Long companyId);
+    List<JobPosting> findAllByJobPostingIdIn(List<Long> jobPostingIdList);
 }
