@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>검색 결과 페이지</title>
+</head>
+<body>
+<h1>[[${search_word}]] 검색 결과</h1>
+<div th:each="job_posting : ${job_postings}">
+  <a th:href="@{/job_posting/{jobPostingId}(jobPostingId = ${job_posting.getJobPostingId()})}">
+    <p th:text="${job_posting}"></p>
+  </a>
+</div>
+</body>
+</html>

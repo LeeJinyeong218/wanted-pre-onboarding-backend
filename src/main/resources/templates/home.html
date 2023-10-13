@@ -20,7 +20,7 @@ home
 
 </div>
 <div class="search-bar">
-    <input name="searchWord" type="text">
+    <input name="searchWord" type="text" class="searchWord">
     <button type="button" class="search-button">검색</button>
 </div>
 <div class="jobPosting-container">
@@ -39,6 +39,14 @@ home
             $.post("/logout").done(() => {
                 location.href = "/";
             })
+        })
+
+        $('.search-button').on('click', () => {
+            let url = "/job_posting/search?searchWord=" + $('.searchWord').val()
+            $.get(url,)
+                .done(() => {
+                    location.href = url;
+                });
         })
     })
 </script>

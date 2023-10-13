@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class JobPostingController {
@@ -35,6 +36,14 @@ public class JobPostingController {
         model.addAttribute("editable", jobPosting.getCompanyId() == companyId);
         model.addAttribute("user_id", userIdObject == null? null : Long.parseLong(String.valueOf(userIdObject)));
         return "jobPostingDetail";
+    }
+
+    // search job posting with keyword
+    @GetMapping("/job_posting/search")
+    public String searchJobPostingProcess(@RequestParam String searchWord, Model model) {
+        model.addAttribute("search_word", searchWord);
+        model.addAttribute("job_postings", jobPostingService.getJobPostingsBySearchWord(searchWord));
+        return "jobPostingSearch";
     }
 
     // company function
@@ -74,8 +83,9 @@ public class JobPostingController {
     // delete job posting
     @PostMapping("/job_posting/{job_posting_id}/delete")
     public String deleteJobPostingProcess(@PathVariable("job_posting_id") Long jobPostingId) {
-        System.out.println(jobPostingId);
         jobPostingService.deleteJobPosting(jobPostingId);
         return "redirect:/";
     }
+
+
 }
