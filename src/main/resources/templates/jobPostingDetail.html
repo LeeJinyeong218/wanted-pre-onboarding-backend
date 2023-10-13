@@ -6,6 +6,9 @@
 </head>
 <body>
 <p th:text="${job_posting}"></p>
+<div th:if="${user_id != null}">
+    <button type="button" class="apply-button">지원하기</button>
+</div>
 <button th:if="${editable == true}" type="button" class="edit-button">수정</button>
 <button th:if="${editable == true}" type="button" class="delete-button">삭제</button>
 </body>
@@ -14,6 +17,7 @@
 <script th:inline="javascript">
     $(() => {
         let jobPostingId = [[${job_posting.getJobPostingId()}]];
+
         $('.edit-button').on('click', () => {
             location.href =  `${jobPostingId}/edit`;
         })
@@ -23,6 +27,18 @@
                 {},
                 () => {
                     location.href = document.referrer;
+                }
+            )
+        })
+        $('.apply-button').on('click', () => {
+            $.post(
+                `${jobPostingId}/apply`,
+                {
+                    companyId: [[${job_posting.getCompanyId()}]],
+                    userId: [[${user_id}]]
+                },
+                () => {
+                    location.reload();
                 }
             )
         })

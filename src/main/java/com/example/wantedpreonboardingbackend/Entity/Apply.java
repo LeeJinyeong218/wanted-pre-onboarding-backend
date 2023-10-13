@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.Entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -35,4 +36,15 @@ public class Apply {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Builder
+    public Apply(
+            Long jobPostingId,
+            Long companyId,
+            Long userId
+    ) {
+        this.jobPostingId = jobPostingId;
+        this.companyId = companyId;
+        this.userId = userId;
+    }
 }

@@ -19,6 +19,7 @@ public class JobPostingController {
     @Autowired
     private JobPostingService jobPostingService;
 
+    // common function
 
     // detail job posting
     @GetMapping("/job_posting/{job_posting_id}")
@@ -27,12 +28,16 @@ public class JobPostingController {
                                        Model model) {
         HttpSession session = request.getSession();
         Object companyIdObject = session.getAttribute("company_id");
+        Object userIdObject = session.getAttribute("user_id");
         Long companyId = companyIdObject == null ? 0 : Long.parseLong(String.valueOf(companyIdObject));
         JobPosting jobPosting = jobPostingService.getJobPostingByJobPostingId(jobPostingId);
         model.addAttribute("job_posting", jobPosting);
         model.addAttribute("editable", jobPosting.getCompanyId() == companyId);
+        model.addAttribute("user_id", userIdObject == null? null : Long.parseLong(String.valueOf(userIdObject)));
         return "jobPostingDetail";
     }
+
+    // company function
 
     // write job posting
     @GetMapping("/job_posting/write")
@@ -69,6 +74,7 @@ public class JobPostingController {
     // delete job posting
     @PostMapping("/job_posting/{job_posting_id}/delete")
     public String deleteJobPostingProcess(@PathVariable("job_posting_id") Long jobPostingId) {
+        System.out.println(jobPostingId);
         jobPostingService.deleteJobPosting(jobPostingId);
         return "redirect:/";
     }

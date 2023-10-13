@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ApplyRepository extends JpaRepository<Apply, Long> {
+    Apply findByJobPostingIdAndUserId(Long jobPostingId, Long UserId);
 }

@@ -19,6 +19,10 @@ home
 <div th:if="${user_id} != null">
 
 </div>
+<div class="search-bar">
+    <input name="searchWord" type="text">
+    <button type="button" class="search-button">검색</button>
+</div>
 <div class="jobPosting-container">
     <div th:each="job_posting : ${job_postings}">
         <a th:href="@{/job_posting/{jobPostingId}(jobPostingId = ${job_posting.getJobPostingId()})}">
